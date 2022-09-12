@@ -46,7 +46,7 @@ else{
 Get-ChildItem -Path $target | Foreach-Object {C:\Programdata\chocolatey\bin\sigcheck.exe -h -e -nobanner -vt $_.FullName} |
 Out-String -Stream | Select-String -Pattern 'C:','MD5','SHA1','256','VT' | Tee-Object -FilePath $Target_Log
 
-$Sus_Files = @(Get-Content -Path $Target_Log | Select-String -Pattern 'c:')
+<#$Sus_Files = @(Get-Content -Path $Target_Log | Select-String -Pattern 'c:')
 foreach($element in $Sus_Files){
   if(!(Test-Path $element)){
     Move-Item -Path $element -Destination $Quarantine
@@ -55,4 +55,4 @@ foreach($element in $Sus_Files){
   else{
     Write-Host "Please check if $element exists in $target"
   }
-}
+}#>
